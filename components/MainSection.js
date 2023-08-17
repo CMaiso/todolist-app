@@ -1,3 +1,5 @@
+import {loadTasks} from "../services/store.js";
+
 export class MainSection extends HTMLElement {
     constructor() {
         super();
@@ -18,6 +20,11 @@ export class MainSection extends HTMLElement {
         const template = document.getElementById("main-section-template");
         const content = template.content.cloneNode(true);
         this.root.appendChild(content);
+
+        window.addEventListener("listtaskchange", async () => {
+            await loadTasks();
+            this.render();
+        });
 
         this.render();
     }

@@ -19,6 +19,7 @@ const API = {
             });
         if (response.ok) {
             console.log('Task created successfully');
+            return response.ok;
         } else {
             throw new Error(`Error creating task: ${response.statusText}`);
         }
@@ -28,7 +29,12 @@ const API = {
             {
                 method: 'DELETE',
             });
-        return await response.json();
+        if (response.ok) {
+            console.log('Task deleted successfully');
+            return response.ok;
+        } else {
+            throw new Error(`Error deleted task: ${response.statusText}`);
+        }
     },
     updateTask: async (task) => {
         const response = await fetch(`${API.url}/tasks/${task?.label}`,

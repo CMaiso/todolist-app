@@ -3,6 +3,17 @@ import API from "../services/api.js";
 export default class TaskItem extends HTMLElement {
     constructor() {
         super();
+        this.root = this.attachShadow({mode: "open"});
+
+        const styles = document.createElement("style");
+        this.root.appendChild(styles);
+
+        async function loadCSS() {
+            const request = await fetch("/components/TaskItem.css");
+            styles.textContent = await request.text();
+        }
+
+        loadCSS();
     }
 
     formatDate(dateString) {
@@ -23,11 +34,9 @@ export default class TaskItem extends HTMLElement {
 
         const template = document.getElementById("task-item-template");
         const content = template.content.cloneNode(true);
-        this.appendChild(content);
+        this.root.appendChild(content);
 
-        const checkbox = this.querySelector("#task-checkbox");
-        const taskListItem = this.querySelector(".task-list-content-title h3");
-        const endDateElement = this.querySelector("#end-date");
+        const checkbox = this.root.querySelector("#task-checkbox");
 
         checkbox.addEventListener("change", async () => {
             if (checkbox.checked) {
@@ -39,18 +48,29 @@ export default class TaskItem extends HTMLElement {
                 };
 
                 await API.updateTask(updatedTask);
-
-                taskListItem.classList.add("task-done");
-                endDateElement.textContent = formattedDate;
-                checkbox.disabled = true;
+                window.dispatchEvent(new Event("listtaskchange"));
             }
         });
 
-        const titles = this.querySelector(".task-list-content-title");
+        this.root.querySelector("#delete-task").addEventListener("click", async () => {
+            await API.deleteTask(item.label);
+            window.dispatchEvent(new Event("listtaskchange"));
+        });
+
+        this.render();
+    }
+
+    render() {
+        const item = JSON.parse(this.dataset.item);
+        const titles = this.root.querySelector(".task-list-content-title");
 
         titles.querySelector("h3").textContent = item.label;
         titles.querySelector("p").textContent = item.description;
-        this.querySelector("#start-date").textContent = this.formatDate(item.start_date);
+        this.root.querySelector("#start-date").textContent = this.formatDate(item.start_date);
+
+        const checkbox = this.root.querySelector("#task-checkbox");
+        const taskListItem = this.root.querySelector(".task-list-content-title h3");
+        const endDateElement = this.root.querySelector("#end-date");
 
         if (item.end_date) {
             endDateElement.textContent = this.formatDate(item.end_date);
@@ -58,7 +78,6 @@ export default class TaskItem extends HTMLElement {
             checkbox.checked = true;
             checkbox.disabled = true;
         }
-
     }
 }
 

@@ -1,0 +1,40 @@
+#tasks-list ul {
+    padding: 0;
+}
+
+.task-list {
+    background-color: var(--secondaryColor);
+    border-radius: .25rem;
+    list-style-type: none;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
+}
+
+.task-list h3 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.task-done {
+    text-decoration: line-through;
+}
+
+.task-list p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.task-list-content {
+    display: flex;
+}
+
+.task-list-content-title {
+    flex-grow: 1;
+}
+
+.task-list-date > p{
+
+}
