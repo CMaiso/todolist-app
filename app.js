@@ -1,8 +1,10 @@
 import Router from "./services/router.js";
 import Store, {loadTasks, todayDate} from "./services/store.js";
 
-import NewTaskSection from "./components/NewTaskSection.js";
-import MainSection from "./components/MainSection.js";
+import {NewTaskSection} from "./components/NewTaskSection.js";
+import {MainSection} from "./components/MainSection.js";
+import TaskItem from "./components/TaskItem.js";
+
 
 window._app = {}
 _app.store = Store;

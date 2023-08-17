@@ -32,23 +32,22 @@
                 <li><a href="">Closed</a></li>
             </ul>
         </nav>
-        <section id="tasks-list">
-            <ul>
-                <li>
-                    <div class="task-list-content">
-                        <div class="task-list-content-title">
-                            <h3>Task Label</h3>
-                            <p>Task Description</p>
-                        </div>
-                        <input type="checkbox" id="task-checkbox"/>
-                    </div>
-                    <div class="task-list-date">
-                        <p><span>Created</span></p>
-                        <p><span>Finished</span></p>
-                    </div>
-                </li>
-            </ul>
-        </section>
+        <section id="tasks-list"></section>
+    </template>
+    <template id="task-item-template">
+        <li class="task-list">
+            <div class="task-list-content">
+                <div class="task-list-content-title">
+                    <h3></h3>
+                    <p></p>
+                </div>
+                <input type="checkbox" id="task-checkbox"/>
+            </div>
+            <div class="task-list-date">
+                <p>Created <span id="start-date"></span></p>
+                <p>Finished <span id="end-date"></span></p>
+            </div>
+        </li>
     </template>
     <template id="new-task-template">
         <div>

@@ -1,6 +1,6 @@
 import API from "../services/api.js";
 
-export default class NewTaskSection extends HTMLElement {
+export class NewTaskSection extends HTMLElement {
     constructor() {
         super();
         this.root = this.attachShadow({ mode: "open" });

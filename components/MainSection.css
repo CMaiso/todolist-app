@@ -22,21 +22,22 @@ nav ul > li:last-child {
     padding: 0;
 }
 
-#tasks-list ul > li {
+.task-list {
     background-color: var(--secondaryColor);
     border-radius: .25rem;
     list-style-type: none;
     padding: 0.5rem 1rem;
+    margin: 1rem 0;
 }
 
-#tasks-list ul > li h3 {
+.task-list h3 {
     margin: 0;
     font-family: 'Playfair Display', serif;
     font-weight: bold;
     font-size: 1.3rem;
 }
 
-#tasks-list ul > li p {
+.task-list p {
     margin: 0;
     font-weight: 500;
     font-size: 1rem;
