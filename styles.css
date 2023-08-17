@@ -16,11 +16,15 @@ body {
     justify-content: center;
 }
 
-body div {
+body > div {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 20rem;
+}
+
+main {
+    width: 100%;
 }
 
 h1 {
@@ -58,6 +62,58 @@ h2 {
     cursor: pointer;
 }
 
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    display: flex;
+    padding: 0;
+}
+
+nav ul > li {
+    list-style-type: none;
+    padding-inline: 0.5rem;
+    border-right: solid 2px black;
+}
+
+nav ul > li:last-child {
+    border-right: 0;
+}
+
+#tasks-list ul {
+    padding: 0;
+}
+
 #tasks-list ul > li {
+    background-color: var(--secondaryColor);
+    border-radius: .25rem;
+    list-style-type: none;
+    padding: 0.5rem 1rem;
+}
+
+#tasks-list ul > li h3 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+#tasks-list ul > li p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.task-list-content {
+    display: flex;
+}
+
+.task-list-content-title {
+    flex-grow: 1;
+}
+
+.task-list-date > p{
 
 }
