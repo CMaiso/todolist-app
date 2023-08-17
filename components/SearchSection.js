@@ -1,6 +1,6 @@
-import {handleSearch, loadTasks} from "../services/store.js";
+import {handleSearch} from "../services/store";
 
-export class MainSection extends HTMLElement {
+export class SearchSection extends HTMLElement {
     constructor() {
         super();
         this.root = this.attachShadow({mode: "open"});
@@ -9,7 +9,7 @@ export class MainSection extends HTMLElement {
         this.root.appendChild(styles);
 
         async function loadCSS() {
-            const request = await fetch("/components/MainSection.css");
+            const request = await fetch("/components/SearchSection.css");
             styles.textContent = await request.text();
         }
 
@@ -17,22 +17,20 @@ export class MainSection extends HTMLElement {
     }
 
     connectedCallback() {
-        const template = document.getElementById("main-section-template");
+        const template = document.getElementById("search-template");
         const content = template.content.cloneNode(true);
         this.root.appendChild(content);
 
-        window.addEventListener("listtaskchange", async () => {
-            await loadTasks();
-            this.render();
-        });
+        const searchBar = document.getElementById("search-bar");
+        searchBar.addEventListener("input", handleSearch);
 
         this.render();
     }
 
     render() {
-        const taskListSection = this.root.querySelector("#tasks-list");
+        const taskListSection = this.root.querySelector("#search-tasks-list");
 
-        if (!_app.store.tasks.length) {
+        if (!_app.store.filteredTasks.length) {
             taskListSection.innerHTML = `
             <p>The list is empty. Add some tasks for today!</p>
         `;
@@ -44,7 +42,7 @@ export class MainSection extends HTMLElement {
 
         const taskListUlElement = taskListSection.querySelector("ul");
 
-        for (let task of _app.store.tasks) {
+        for (let task of _app.store.filteredTasks) {
             const item = document.createElement("task-item");
             item.dataset.item = JSON.stringify(task);
 
@@ -53,4 +51,4 @@ export class MainSection extends HTMLElement {
     }
 }
 
-customElements.define("main-section", MainSection);
+customElements.define("search-section", SearchSection);

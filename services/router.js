@@ -24,6 +24,9 @@ const Router = {
             case "/newTask":
                 pageElement = document.createElement("new-task-section");
                 break;
+            case "/search":
+                pageElement = document.createElement("search-section");
+                break;
             default:
                 pageElement = document.createElement("main-section");
                 break;
