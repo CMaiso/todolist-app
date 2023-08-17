@@ -6,7 +6,8 @@ const Store = {
 
 export const loadTasks = async () => {
     try {
-        Store.tasks = await API.fetchTasks();
+        const results = await API.fetchTasks();
+        Store.tasks = results.reverse();
     } catch (error) {
         return error;
     }

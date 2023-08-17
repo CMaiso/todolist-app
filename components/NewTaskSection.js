@@ -16,7 +16,7 @@ export class NewTaskSection extends HTMLElement {
     }
 
     async createNewTask(dataTask) {
-        const date = new Date(); // Current date and time
+        const date = new Date();
         const formattedDate = date.toISOString();
 
             const task = {
@@ -26,7 +26,7 @@ export class NewTaskSection extends HTMLElement {
 
             try {
                await API.postTask(task);
-                return true;
+               return true;
             } catch (error) {
                 console.error('Error sending data:', error);
             }

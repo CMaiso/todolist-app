@@ -24,7 +24,6 @@ export class MainSection extends HTMLElement {
 
     render() {
         const taskListSection = this.root.querySelector("#tasks-list");
-        console.log(taskListSection);
 
         if (!_app.store.tasks.length) {
             taskListSection.innerHTML = `

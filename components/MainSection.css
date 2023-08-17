@@ -37,6 +37,10 @@ nav ul > li:last-child {
     font-size: 1.3rem;
 }
 
+.task-done {
+    text-decoration: line-through;
+}
+
 .task-list p {
     margin: 0;
     font-weight: 500;

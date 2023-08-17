@@ -39,7 +39,12 @@ const API = {
                 },
                 body: JSON.stringify(task),
             });
-        return await response.json();
+        if (response.ok) {
+            console.log('Task updated successfully');
+            return response.ok;
+        } else {
+            throw new Error(`Error updated task: ${response.statusText}`);
+        }
     }
 }
 
