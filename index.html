@@ -18,19 +18,20 @@
 <div>
     <header>
         <h1>Today's Task</h1>
-        <h2>Date du jour</h2>
+        <h2 id="dateDisplay"></h2>
+        <div id="new-task">
+            <button>&#43; New Task</button>
+        </div>
     </header>
-    <main id="main-section">
-        <section>
-            <div id="new-task">
-                <button>&#43; New Task</button>
-            </div>
-        </section>
+
+    <main></main>
+
+    <template id="main-section-template">
         <nav>
             <ul>
-                <li>All</li>
-                <li>Open</li>
-                <li>Closed</li>
+                <li><a href="">All</a></li>
+                <li><a href="">Open</a></li>
+                <li><a href="">Closed</a></li>
             </ul>
         </nav>
         <section id="tasks-list">
@@ -50,16 +51,13 @@
                 </li>
             </ul>
         </section>
-    </main>
+    </template>
+    <template id="input-task-template">
+        <div>
+            <label for="taskName">Create a new task</label>
+            <input type="text" id="taskName" />
+        </div>
+    </template>
 </div>
-<!--        <input type="text" id="task-name" placeholder="Create a New Task" />-->
-<!--<input-task>-->
-<!--    <template id="input-task-template">-->
-<!--        <div>-->
-<!--            <label for="taskName">Create a new task</label>-->
-<!--            <input type="text" id="taskName" />-->
-<!--        </div>-->
-<!--    </template>-->
-<!--</input-task>-->
 </body>
 </html>
