@@ -17,7 +17,11 @@ const API = {
                 },
                 body: JSON.stringify(task),
             });
-        return await response.json();
+        if (response.ok) {
+            console.log('Task created successfully');
+        } else {
+            throw new Error(`Error creating task: ${response.statusText}`);
+        }
     },
     deleteTask: async (label) => {
         const response = await fetch(`${API.url}/tasks/${label}`,

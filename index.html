@@ -19,9 +19,7 @@
     <header>
         <h1>Today's Task</h1>
         <h2 id="dateDisplay"></h2>
-        <div id="new-task">
-            <button>&#43; New Task</button>
-        </div>
+        <a id="new-task" class="link" href="/newTask">&#43; New Task</a>
     </header>
 
     <main></main>
@@ -52,10 +50,17 @@
             </ul>
         </section>
     </template>
-    <template id="input-task-template">
+    <template id="new-task-template">
         <div>
-            <label for="taskName">Create a new task</label>
-            <input type="text" id="taskName" />
+            <h3>Create a new Task</h3>
+            <form>
+                <label for="task-label">Label</label>
+                <input type="text" id="task-label" required />
+                <label for="task-description">Description</label>
+                <textarea id="task-description" rows="4" cols="50"></textarea>
+                <button type="submit">Create</button>
+                <p id="success-message"></p>
+            </form>
         </div>
     </template>
 </div>

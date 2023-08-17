@@ -1,5 +1,5 @@
 import Router from "./services/router.js";
-import Store, {initPage, loadTasks, todayDate} from "./services/store.js";
+import Store, {loadTasks, todayDate} from "./services/store.js";
 
 import NewTaskSection from "./components/NewTaskSection.js";
 import MainSection from "./components/MainSection.js";
