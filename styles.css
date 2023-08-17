@@ -1,0 +1,63 @@
+:root {
+    --background: #F6F5EF;
+    --primaryColor: #2A464D;
+    --secondaryColor: #FCFBF9;
+    --color3: #7F7B71;
+    --color4: #273134;
+    --highlight: #F0EFE4;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+}
+
+body div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 20rem;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#new-task {
+    width: 100%;
+}
+
+#new-task button {
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: white;
+    padding: 1rem;
+    background-color: var(--primaryColor);
+    width: 100%;
+    text-align: left;
+    border: 0;
+    border-radius: .25rem;
+}
+
+#new-task button:hover {
+    background-color: var(--color4);
+    cursor: pointer;
+}
+
+#tasks-list ul > li {
+
+}
