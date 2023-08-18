@@ -16,43 +16,23 @@ export const loadTasks = async () => {
 
 export const handleSearch = () => {
     const searchBar = document.getElementById("search-bar");
-    const searchQuery = searchBar.value;
+    const searchQuery = searchBar.value.toLowerCase();
 
     const searchDateInput = document.getElementById("search-date");
     const searchDate = searchDateInput.value;
 
+    // If both filters are empty, render the original list
     if (!searchQuery && !searchDate) {
+        Store.filteredTasks = [...Store.tasks];
         return window.dispatchEvent(new Event("renderlisttasks"));
     }
 
-    const tasksToFilter = Store.filteredTasks > 0 ? Store.filteredTasks : Store.tasks;
+    // Filter based on both label and date
+    const filteredTasks = Store.tasks.filter((task) => {
+        const taskLabelMatches = task.label.toLowerCase().includes(searchQuery);
+        const taskDateMatches = searchDate ? new Date(task.start_date).toDateString() === new Date(searchDate).toDateString() : true;
 
-    const filteredTasks = tasksToFilter.filter((task) =>
-        task.label.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    Store.filteredTasks = filteredTasks;
-    window.dispatchEvent(new Event("searchlisttask"));
-}
-
-export const handleSearchDate = () => {
-    const searchDateInput = document.getElementById("search-date");
-    const searchDate = searchDateInput.value;
-
-    const searchBar = document.getElementById("search-bar");
-    const searchQuery = searchBar.value;
-
-    if (!searchQuery && !searchDate) {
-        return window.dispatchEvent(new Event("renderlisttasks"));
-    }
-
-    const formatSearchDate = new Date(searchDateInput.value).toDateString();
-    const tasksToFilter = Store.filteredTasks > 0 ? Store.filteredTasks : Store.tasks;
-
-    const filteredTasks = tasksToFilter.filter((task) => {
-        const taskDate = new Date(task.start_date).toDateString();
-
-        return taskDate === formatSearchDate;
+        return taskLabelMatches && taskDateMatches;
     });
 
     Store.filteredTasks = filteredTasks;

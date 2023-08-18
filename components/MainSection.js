@@ -1,4 +1,4 @@
-import {handleSearch, handleSearchDate, loadTasks} from "../services/store.js";
+import {handleSearch, loadTasks} from "../services/store.js";
 
 export class MainSection extends HTMLElement {
     constructor() {
@@ -29,7 +29,7 @@ export class MainSection extends HTMLElement {
         const searchBar = document.getElementById("search-bar");
         const searchDateInput = document.getElementById("search-date");
         searchBar.addEventListener("input", handleSearch);
-        searchDateInput.addEventListener("input", handleSearchDate);
+        searchDateInput.addEventListener("input", handleSearch);
 
         window.addEventListener("renderlisttasks", async () => {
             this.render();
@@ -70,7 +70,7 @@ export class MainSection extends HTMLElement {
 
         if (!_app.store.filteredTasks.length) {
             taskListSection.innerHTML = `
-            <p>The list is empty!</p>
+            <p>No match found. Try another research</p>
         `;
         } else {
             taskListSection.innerHTML = `
