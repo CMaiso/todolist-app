@@ -1,7 +1,3 @@
-#tasks-list ul {
-    padding: 0;
-}
-
 .task-list {
     background-color: var(--secondaryColor);
     border-radius: .25rem;
@@ -21,8 +17,8 @@
     text-decoration: line-through;
 }
 
-.task-list p {
-    margin: 0;
+.task-list-content-title p {
+    margin: 0.3rem 0 0 0;
     font-weight: 500;
     font-size: 1rem;
 }
@@ -35,6 +31,34 @@
     flex-grow: 1;
 }
 
-.task-list-date > p{
+.task-list-date {
+    margin-top: 1rem;
+}
 
+.task-list-date > p {
+    margin: 0;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.task-list-date > p span{
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: bold;
+}
+
+#delete-task {
+    font-size: 0.8rem;
+    color: white;
+    padding: 0.3rem 0.5rem;
+    background-color: var(--primaryColor);
+    text-align: left;
+    border: 0;
+    border-radius: .25rem;
+    margin-top: 0.5rem;
+}
+
+#new-task:hover {
+    background-color: var(--color4);
+    cursor: pointer;
 }

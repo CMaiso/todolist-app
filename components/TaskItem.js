@@ -66,14 +66,14 @@ export default class TaskItem extends HTMLElement {
 
         titles.querySelector("h3").textContent = item.label;
         titles.querySelector("p").textContent = item.description;
-        this.root.querySelector("#start-date").textContent = this.formatDate(item.start_date);
+        this.root.querySelector("#start-date").innerHTML = `Created <span>${this.formatDate(item.start_date)}</span>`;
 
         const checkbox = this.root.querySelector("#task-checkbox");
         const taskListItem = this.root.querySelector(".task-list-content-title h3");
         const endDateElement = this.root.querySelector("#end-date");
 
         if (item.end_date) {
-            endDateElement.textContent = this.formatDate(item.end_date);
+            endDateElement.innerHTML = `Finished <span>${this.formatDate(item.end_date)}</span>`;
             taskListItem.classList.add("task-done");
             checkbox.checked = true;
             checkbox.disabled = true;

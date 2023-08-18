@@ -27,13 +27,6 @@
     <main></main>
 
     <template id="main-section-template">
-        <nav>
-            <ul>
-                <li><a href="">All</a></li>
-                <li><a href="">Open</a></li>
-                <li><a href="">Closed</a></li>
-            </ul>
-        </nav>
         <section id="tasks-list"></section>
     </template>
     <template id="task-item-template">
@@ -44,10 +37,11 @@
                     <p></p>
                 </div>
                 <input type="checkbox" id="task-checkbox" />
+                <span class="checkmark"></span>
             </div>
             <div class="task-list-date">
-                <p>Created <span id="start-date"></span></p>
-                <p>Finished <span id="end-date"></span></p>
+                <p id="start-date"></p>
+                <p id="end-date"></p>
             </div>
             <button id="delete-task">Delete</button>
         </li>
