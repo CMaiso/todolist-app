@@ -20,8 +20,11 @@ const API = {
         if (response.ok) {
             console.log('Task created successfully');
             return response.ok;
-        } else {
-            throw new Error(`Error creating task: ${response.statusText}`);
+         } if (response.status === 409) {
+            return { error: 'Conflict: The task already exists.' };
+        }
+        else {
+            return { error: 'An unexpected error occurred.' }
         }
     },
     deleteTask: async (label) => {
@@ -33,7 +36,7 @@ const API = {
             console.log('Task deleted successfully');
             return response.ok;
         } else {
-            throw new Error(`Error deleted task: ${response.statusText}`);
+            return { error: 'An unexpected error occurred.' }
         }
     },
     updateTask: async (task) => {
@@ -49,7 +52,7 @@ const API = {
             console.log('Task updated successfully');
             return response.ok;
         } else {
-            throw new Error(`Error updated task: ${response.statusText}`);
+            return { error: 'An unexpected error occurred.' }
         }
     }
 }

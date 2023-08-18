@@ -26,6 +26,19 @@ export class MainSection extends HTMLElement {
             this.render();
         });
 
+        document.getElementById("new-task").addEventListener("click", (event) => {
+            const link = event.target;
+            if (window.location.pathname === "/newTask") {
+                document.querySelector(".search-form").style.display = 'none';
+                link.textContent = "< Back";
+                link.href = "/";
+            } else {
+                document.querySelector(".search-form").style.display = 'flex';
+                link.textContent = "+ New Task";
+                link.href = "/newTask";
+            }
+        });
+
         const searchBar = document.getElementById("search-bar");
         const searchDateInput = document.getElementById("search-date");
         searchBar.addEventListener("input", handleSearch);
