@@ -1,4 +1,4 @@
-import {handleSearch, loadTasks} from "../services/store.js";
+import {handleSearch, handleSearchDate, loadTasks} from "../services/store.js";
 
 export class MainSection extends HTMLElement {
     constructor() {
@@ -27,10 +27,16 @@ export class MainSection extends HTMLElement {
         });
 
         const searchBar = document.getElementById("search-bar");
+        const searchDateInput = document.getElementById("search-date");
         searchBar.addEventListener("input", handleSearch);
+        searchDateInput.addEventListener("input", handleSearchDate);
+
+        window.addEventListener("renderlisttasks", async () => {
+            this.render();
+        });
 
         window.addEventListener("searchlisttask", async () => {
-            this.render();
+            this.renderListSearch();
         });
 
         this.render();
@@ -39,11 +45,9 @@ export class MainSection extends HTMLElement {
     render() {
         const taskListSection = this.root.querySelector("#tasks-list");
 
-        const tasksToRender = _app.store.filteredTasks.length > 0 ? _app.store.filteredTasks : _app.store.tasks;
-
-        if (!tasksToRender.length) {
+        if (!_app.store.tasks.length) {
             taskListSection.innerHTML = `
-            <p>The list is empty. Add some tasks for today!</p>
+            <p>The list is empty, add some tasks today!</p>
         `;
         } else {
             taskListSection.innerHTML = `
@@ -53,7 +57,30 @@ export class MainSection extends HTMLElement {
 
         const taskListUlElement = taskListSection.querySelector("ul");
 
-        for (let task of tasksToRender) {
+        for (let task of _app.store.tasks) {
+            const item = document.createElement("task-item");
+            item.dataset.item = JSON.stringify(task);
+
+            taskListUlElement.appendChild(item);
+        }
+    }
+
+    renderListSearch() {
+        const taskListSection = this.root.querySelector("#tasks-list");
+
+        if (!_app.store.filteredTasks.length) {
+            taskListSection.innerHTML = `
+            <p>The list is empty!</p>
+        `;
+        } else {
+            taskListSection.innerHTML = `
+            <ul></ul>
+        `;
+        }
+
+        const taskListUlElement = taskListSection.querySelector("ul");
+
+        for (let task of _app.store.filteredTasks) {
             const item = document.createElement("task-item");
             item.dataset.item = JSON.stringify(task);
 
