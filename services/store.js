@@ -17,12 +17,12 @@ export const loadTasks = async () => {
 export const handleSearch = () => {
     const searchBar = document.getElementById("search-bar");
     const searchQuery = searchBar.value.toLowerCase();
-    const filteredTasks = Store.tasks.filter((task) =>
+    const filteredTasks = _app.store.tasks.filter((task) =>
         task.label.toLowerCase().includes(searchQuery)
     );
 
     Store.filteredTasks = filteredTasks;
-    window.dispatchEvent(new Event("listtaskchange"));
+    window.dispatchEvent(new Event("searchlisttask"));
 }
 
 export const todayDate = () => {

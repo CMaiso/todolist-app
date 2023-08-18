@@ -26,13 +26,22 @@ export class MainSection extends HTMLElement {
             this.render();
         });
 
+        const searchBar = document.getElementById("search-bar");
+        searchBar.addEventListener("input", handleSearch);
+
+        window.addEventListener("searchlisttask", async () => {
+            this.render();
+        });
+
         this.render();
     }
 
     render() {
         const taskListSection = this.root.querySelector("#tasks-list");
 
-        if (!_app.store.tasks.length) {
+        const tasksToRender = _app.store.filteredTasks.length > 0 ? _app.store.filteredTasks : _app.store.tasks;
+
+        if (!tasksToRender.length) {
             taskListSection.innerHTML = `
             <p>The list is empty. Add some tasks for today!</p>
         `;
@@ -44,7 +53,7 @@ export class MainSection extends HTMLElement {
 
         const taskListUlElement = taskListSection.querySelector("ul");
 
-        for (let task of _app.store.tasks) {
+        for (let task of tasksToRender) {
             const item = document.createElement("task-item");
             item.dataset.item = JSON.stringify(task);
 
